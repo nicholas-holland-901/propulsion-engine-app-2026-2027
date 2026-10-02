@@ -1,0 +1,17 @@
+{
+  "name": "propulsion-engine-app-2026-2027",
+  "version": "1.0.0",
+  "description": "NUStars Propulsion Team application to control rocket engine.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Nicholas Holland",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^44.5.1"
+  }
+}
