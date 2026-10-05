@@ -1,33 +1,71 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+// main.js
+
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const path = require('node:path')
+const fs = require('node:fs')
+const { SerialPort } = require('serialport')
+const { ByteLengthParser } = require('@serialport/parser-byte-length')
+const { PacketLengthParser } = require('@serialport/parser-packet-length')
 
 let mainWindow;
 
-function createMainWindow() {
+let sp;
+let parser;
+
+const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // Optional for security
-    },
-  });
+	webPreferences: {
+		sandbox: false,
+		preload: path.join(__dirname, 'preload.js')
+	}
+  })
 
-  // Load HTML file into the window
-  mainWindow.loadFile('index.html');
-
-  // Handle window close
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+  mainWindow.loadFile('setup_renderer.html')
 }
 
-// App lifecycle events
-app.whenReady().then(createMainWindow);
 
+// opening the app
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
+  })
+})
+
+// closing the app
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+
+// handle serial port operation
+
+
+
+// Serial port initialization
+ipcMain.on('serial-path', (_event, path) => {
+	if (path !== 'none' && !sp) {
+		sp = new SerialPort({path: path, baudRate: 9600, autoOpen: false, dataBits: 8, parityBits: 'none', stopBits: 1});
+	}
+	else {
+		// this should never run
+		console.log("error: invaild serialport configuration");
+	}
 });
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createMainWindow();
+// handle sending bytes when we get the message
+ipcMain.on('control-byte', (_event, controlByte) => {
+	console.log(controlByte);
+  sp.write(Buffer.from([controlByte]));
+})
+
+// Switch which page is being shown
+ipcMain.on('load-main', (_event, newPage) => {
+  mainWindow.loadFile(newPage);
 });

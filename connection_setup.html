@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>engiNUity</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body id="mainMenuBody">
+    <h1>engiNUity</h1>
+    <div id="connection-setup-menu">
+      <div>
+        <label for="serialport-select">Select a Serial Port: </label>
+        <select id="serialport-select" name="Serial Port">
+          <!-- Options determined via connection_setup.js -->
+        </select>
+        <button id="setup::reload-serialport-options">Reload Options</button> 
+      </div>
+      <div>
+        <label for="setup::csv-path">Enter log file name:</label><input type="text" id="setup::csv-path"> </input>
+        <span>.csv</span>
+      </div>
+      <div>
+        <button id="setup::init-engine-comms">Initialize Engine Communication</button>
+        <button id="setup::cancel_init_engine_comms">Cancel</button>
+      </div>
+      <div>
+      </div>
+    </div>
+  </body>
+  <script src="./connection_setup.js"></script>
+</html>
