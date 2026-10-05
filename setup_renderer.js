@@ -1,9 +1,11 @@
 // setup_renderer.js
+//
+// functionality for main menu page
 
 
 // Main menu button functionality :D
 document.getElementById('setup::main-controls-panel').addEventListener('click', () => {
-	electronAPI.sendLoadMain();
+	electronAPI.sendLoadMain("main_controls_panel.html");
 });
 
 

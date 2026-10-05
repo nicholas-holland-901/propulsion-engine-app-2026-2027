@@ -1,4 +1,6 @@
 // main.js
+//
+// main processes
 
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('node:path')
@@ -7,45 +9,43 @@ const { SerialPort } = require('serialport')
 const { ByteLengthParser } = require('@serialport/parser-byte-length')
 const { PacketLengthParser } = require('@serialport/parser-packet-length')
 
-let mainWindow;
 
+let mainWindow;
 let sp;
 let parser;
+
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-	webPreferences: {
+  webPreferences: {
 		sandbox: false,
 		preload: path.join(__dirname, 'preload.js')
 	}
-  })
+  });
 
-  mainWindow.loadFile('setup_renderer.html')
+  mainWindow.loadFile('setup_renderer.html');
 }
 
 
 // opening the app
 app.whenReady().then(() => {
-  createWindow()
+  createWindow();
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
+      createWindow();
     }
-  })
+  });
 })
 
 // closing the app
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
-
-// handle serial port operation
-
+});
 
 
 // Serial port initialization
@@ -60,13 +60,16 @@ ipcMain.on('serial-path', (_event, path) => {
 	}
 });
 
+
 // handle sending bytes when we get the message
 ipcMain.on('control-byte', (_event, controlByte) => {
 	console.log(controlByte);
   sp.write(Buffer.from([controlByte]));
 })
 
+
 // Switch which page is being shown
 ipcMain.on('load-main', (_event, newPage) => {
   mainWindow.loadFile(newPage);
 });
+

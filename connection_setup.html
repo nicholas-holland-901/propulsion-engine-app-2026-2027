@@ -6,26 +6,32 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body id="mainMenuBody">
-    <h1>engi<font color="#4E2A84">NU</font>ity</h1>
-    <div id="connection-setup-menu">
-      <div>
-        <label for="serialport-select">Select a Serial Port: </label>
-        <select id="serialport-select" name="Serial Port">
-          <!-- Options determined via connection_setup.js -->
-        </select>
-        <button id="setup::reload-serialport-options">Reload Options</button> 
-      </div>
-      <div>
-        <label for="setup::csv-path">Enter log file name:</label><input type="text" id="setup::csv-path"> </input>
-        <span>.csv</span>
-      </div>
-      <div>
-        <button id="setup::init-engine-comms">Initialize Engine Communication</button>
-        <button id="setup::cancel_init_engine_comms">Cancel</button>
-      </div>
-      <div>
-      </div>
+    <div style="clear: both">
+      <h1 id="pageHeader">engi<font color="#4E2A84">NU</font>ity</h1>
+      <h1 id="versionNumber">v0.1</h1>
     </div>
+      <main id="mainControls">
+        <div id="connectionSetupMenu">
+          <h2>Serial Port Connection Setup</h2>
+          <div>
+            <label for="serialport-select">Select a Serial Port: </label>
+            <select id="serialport-select" name="Serial Port">
+              <!-- Options determined via connection_setup.js -->
+            </select>
+            <button id="setup::reload-serialport-options">Reload Options</button> 
+          </div>
+          <div>
+            <label for="setup::csv-path">Enter log file name:</label><input type="text" id="setup::csv-path"> </input>
+            <span>.csv</span>
+          </div>
+          <div>
+            <button id="setup::init-engine-comms">Initialize Engine Communication</button>
+            <button id="setup::cancel_init_engine_comms">Cancel</button>
+          </div>
+          <div>
+          </div>
+        </div>
+      </main>
   </body>
   <script src="./connection_setup.js"></script>
 </html>
