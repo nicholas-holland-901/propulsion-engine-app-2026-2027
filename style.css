@@ -4,8 +4,43 @@ body {
   margin-top: 50px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
+#mainMenuDiv {
+  display: flex;
+  gap: auto;
+  align-items: center;
+  vertical-align: middle;
+}
+
+#mainMenuDiv div {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+
+#mainMenuButtons {
+  display: grid;
+  grid-column: auto;
+}
+
+#mainMenuButtons button{
+    background: white;
+    border: 1px solid #a5b1c2;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: #111111;
+    display: inline-block;
+    margin: 1rem auto;
+    min-width: 180px;
+    overflow: hidden;
+    padding: 15px 30px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: .2s ease-in-out all;
+}
+
+
+#mainMenuButtons button:hover {
+  background-color: #4e2a8479;
   cursor: pointer;
 }

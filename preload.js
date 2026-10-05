@@ -7,5 +7,6 @@ const { SerialPort } = require('serialport');
 
 contextBridge.exposeInMainWorld('electronAPI', {
     getSerialPorts: () => SerialPort.list(),
+    sendSerialPath: (serialPath) => ipcRenderer.send('serial-path', serialPath),
 	sendLoadMain: (newPage) => ipcRenderer.send('load-main', newPage),
 });

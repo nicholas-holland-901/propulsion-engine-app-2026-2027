@@ -52,10 +52,11 @@ app.on('window-all-closed', () => {
 ipcMain.on('serial-path', (_event, path) => {
 	if (path !== 'none' && !sp) {
 		sp = new SerialPort({path: path, baudRate: 9600, autoOpen: false, dataBits: 8, parityBits: 'none', stopBits: 1});
+    mainWindow.loadFile('setup_renderer.html');
 	}
 	else {
 		// this should never run
-		console.log("error: invaild serialport configuration");
+		console.log("ERROR: Invaild serialport configuration.");
 	}
 });
 

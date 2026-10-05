@@ -38,22 +38,23 @@ const csvPathTextInput = document.getElementById("setup::csv-path");
 // handle button start button press
 const initEngineCommsButton = document.getElementById("setup::init-engine-comms");
 
-// function initEngineCommunication() {
-// 	const path = serialPortSelect.value;
-// 	// check that we have valid port (!= none)
-// 	if (path === 'none') {
-// 		console.log("invalid path");
-// 		return;
-// 	}
-// 	// send serial port path
-// 	electronAPI.sendSerialPath(path);
+function initEngineCommunication() {
+	const path = serialPortSelect.value;
+	// check that we have valid port (!= none)
+	if (path === 'none') {
+		console.log("invalid path");
+		alert("ERROR: Invalid serialport path.");
+		return;
+	}
+	// send serial port path
+	electronAPI.sendSerialPath(path);
 	
-// 	// send message to load new page, including csv path
-// 	electronAPI.sendLoadMain(csvPathTextInput.value + '.csv');
-// }
+	// send message to load new page, including csv path
+	//electronAPI.sendLoadMain(csvPathTextInput.value + '.csv');
+}
 
 
-//initEngineCommsButton.addEventListener("click", initEngineCommunication);
+initEngineCommsButton.addEventListener("click", initEngineCommunication);
 
 
 
