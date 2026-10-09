@@ -10,7 +10,7 @@ document.getElementById('setup::main-controls-panel').addEventListener('click', 
 
 
 document.getElementById('setup::edit-test-sequences').addEventListener('click', () => {
-	electronAPI.sendLoadMain();
+	electronAPI.sendLoadMain("test_sequence_editor.html");
 });
 
 

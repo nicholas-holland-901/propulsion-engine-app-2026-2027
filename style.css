@@ -95,3 +95,40 @@ button:hover {
   justify-content: space-evenly;
   width: 100%;
 }
+
+
+#testSequenceDiv {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  gap: 1rem;
+}
+
+
+#pieceArea {
+  border: 1px solid black;
+}
+
+#dragArea {
+  border: 1px solid black;
+  position: relative;
+}
+
+#sequenceSelectArea {
+  border: 1px solid black;
+}
+
+.draggableItem {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+}
+
+.draggableItem:active {
+  cursor: grabbing;
+}
+
+#testDragBlock {
+  border: 1px solid black;
+}
